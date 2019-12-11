@@ -11,7 +11,6 @@ class Game extends Component {
   }
 
   render() {
-
     const exampleFormat = FIELDS.map((field) => {
       if (field.key) {
         return field.placeholder;
@@ -34,7 +33,7 @@ class Game extends Component {
 
         <RecentSubmission />
 
-        <PlayerSubmissionForm />
+        <PlayerSubmissionForm fields = {FIELDS}/>
 
         <FinalPoem />
 

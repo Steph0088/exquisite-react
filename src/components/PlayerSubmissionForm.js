@@ -5,25 +5,52 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+    let fieldState = {}
+    this.props.fields.forEach(field => {
+      fieldState[field.key] = ''
+    });
+    this.state = fieldState
+  }
+  onInputChange = (event) => {
+    const updatedState = {};
+  
+    const field = event.target.name;
+    const value = event.target.value;
+  
+    updatedState[field] = value;
+    this.setState(updatedState);
   }
 
   render() {
+  console.log(this.state)
+    const displayBoxes = this.props.fields.map((field, i) => {
+      if(field.key){
+           return(
+            <input
+            key = {i}
+            placeholder={field.placeholder}
+            name = {field.key}
+            value ={this.state[field.key]}
+            onChange = {this.onInputChange}
+            type="text" />
+           )
+      }else{
+        return field 
+      }
+    })
+
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{ }</h3>
 
         <form className="PlayerSubmissionForm__form" >
 
+
           <div className="PlayerSubmissionForm__poem-inputs">
-
-            {
-              // Put your form inputs here... We've put in one below as an example
-            }
-            <input
-              placeholder="hm..."
-              type="text" />
-
+            
+            {displayBoxes}
+          
           </div>
 
           <div className="PlayerSubmissionForm__submit">
